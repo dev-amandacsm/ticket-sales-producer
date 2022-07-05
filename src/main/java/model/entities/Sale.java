@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import model.enums.Status;
 
 import java.math.BigDecimal;
 
@@ -16,4 +17,5 @@ public class Sale {
     private Client client;
     private Integer amount;
     private BigDecimal price;
+    private Status status;
 }
