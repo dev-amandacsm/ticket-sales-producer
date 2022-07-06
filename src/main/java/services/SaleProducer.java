@@ -17,11 +17,8 @@ import static java.lang.Thread.sleep;
 
 public class SaleProducer {
 
-    private static Random random = new Random();
+    private static final Random random = new Random();
     private static long id = 0;
-    private static BigDecimal ticketPrice = BigDecimal.valueOf(350);
-    private static Long clientId = (long) random.nextInt(100);
-    private static Integer amount = random.nextInt(10);
 
     public static void main(String[] args) throws InterruptedException {
 
@@ -42,25 +39,26 @@ public class SaleProducer {
     }
 
     private static Client generateClient(){
+        Long clientId = (long) random.nextInt(100);
         return Client
                 .builder()
                 .id(clientId)
                 .name("Client " + clientId)
                 .email("client" + clientId + "@email.com")
-                .phone(String.valueOf(random.nextInt()))
+                .phone(String.valueOf(random.ints(100000000, 999999999)))
                 .build();
     }
 
     private static Sale generateSale(){
-        Client client = generateClient();
+        Integer amount = random.nextInt(10);
+        BigDecimal ticketPrice = BigDecimal.valueOf(350);
         return Sale
                 .builder()
                 .id(id++)
-                .client(client)
+                .client(generateClient())
                 .amount(amount)
                 .totalValue(ticketPrice.multiply(BigDecimal.valueOf(amount)))
                 .status(Status.PENDING_PAYMENT)
                 .build();
     }
-
 }
