@@ -31,9 +31,9 @@ public class SaleProducer {
 
         while(true){
             Sale sale = generateSale();
-            ProducerRecord<String, Sale> record = new ProducerRecord<>("ticket-sales", sale);
+            ProducerRecord<String, Sale> record = new ProducerRecord<>("sales", sale);
             producer.send(record);
-            sleep(5000);
+            sleep(3000);
         }
 
     }
@@ -45,7 +45,7 @@ public class SaleProducer {
                 .id(clientId)
                 .name("Client " + clientId)
                 .email("client" + clientId + "@email.com")
-                .phone(String.valueOf(random.ints(100000000, 999999999)))
+                .phone(String.valueOf(random.nextInt(999999999)))
                 .build();
     }
 
