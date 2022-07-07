@@ -31,7 +31,7 @@ public class SaleProducer {
 
         while(true){
             Sale sale = generateSale();
-            ProducerRecord<String, Sale> record = new ProducerRecord<>("sales", sale);
+            ProducerRecord<String, Sale> record = new ProducerRecord<>("demo-kafka", sale);
             producer.send(record);
             sleep(3000);
         }
